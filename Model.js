@@ -31,26 +31,50 @@ async function getAllBrands(){
 }
 
 async function getAllModels(){
+
   var allModel =[];
   var brands = await getBrands();
   var myPromises = brands.map((brand) =>getModels(brand))
 
-  await Promise.all(myPromises)
+  return await Promise.all(myPromises)
     .then((result)=>{
-    result.forEach((Arraymodel)=>{
-      Arraymodel.forEach((model) =>{
-        allModel.push(model)
-      })
-    })
-    console.log(allModel);
-    indexDB(allModel)
+      for (let brand of result){
+        for(let model of brand ){
+          allModel.push(model)
+        }
+      }
+    return allModel;
   })
   .catch((err) => console.log(err))
 }
 
+async function printModels(){
+   let brands = await getAllBrands();
+   let allModel = await getAllModels(brands);
+
+   models = {"allModels":[]};
+   for (let model of allModel){
+     models.allModels.push(model)
+   }
+
+   fs.writeFile("models.json" ,JSON.stringify(models) ,'utf8' , (err)=>{
+     if(err){
+       console.log(err);
+     }
+     else{
+       console.log("Succefully wrote the file")
+     }
+   })
+ }
 
 
 
+
+/*  result.forEach((Arraymodel)=>{
+    Arraymodel.forEach((model) =>{
+      allModel.push(model)
+    })
+  })*/
 
 function indexDB(allModel){
 
@@ -70,7 +94,9 @@ function indexDB(allModel){
   })
 }
 
-getAllModels();
+
+printModels();
+//getAllModels();
 
 
 
@@ -79,11 +105,7 @@ getAllModels();
 //createJSON();
 
 
-async function printModels(){
-   let brands = await getAllBrands();
-   let models = getAllModels(brands);
-   return models
-}
+
 /*
 printModels().then((models)=>{
   console.log(models)
