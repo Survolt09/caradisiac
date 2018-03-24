@@ -12,7 +12,8 @@ Clone or download the project.
 Then install dependencies with :
 
 ```
-$ npm install```
+$ npm install
+```
 
 
 ## Usage
@@ -35,7 +36,9 @@ To begin with the API :
 
 Run :
 ```
-> node ./Server.js```
+> node ./Server.js
+```
+
 Download postman and send the following post request :
 
 ` http://localhost:9292/populate`
@@ -51,30 +54,12 @@ Now let's use the react app to retrieve suv with high volume :
 Type :
 ```
 > cd caradisiac-react-app
-> npm start```
+> npm start
+```
 
 It should start the react server.
 Go to http://localhost:3000/
 
 And click on the `Get suv` button.
 
-You should now see the 10 SUV with the highest volume ! 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+You should now see the 10 SUV with the highest volume !
