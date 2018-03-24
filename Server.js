@@ -1,13 +1,12 @@
 
-
-const express        = require('express');
-const elasticsearch  = require ('elasticsearch')
-const bodyParser     = require('body-parser');
-const app            = express();
+////////////////////////////////////////
+//             Server.js              //
+////////////////////////////////////////
 
 
-const port = 8000;
+var app = require('./App');
+var port = 9292;
 
-app.listen(port, function() {
+var server = app.listen(port, function() {
   console.log('Express server listening on port ' + port);
 });
